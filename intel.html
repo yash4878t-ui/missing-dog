@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>खोया हुआ कुत्ता — मैक्स</title>
+<style>
+ body{font-family:Arial,system-ui,sans-serif;margin:0;background:#fafafa;color:#111}
+ .wrapper{max-width:800px;margin:auto;padding:16px}
+ h1{text-align:center;color:#c0392b;font-size:32px;margin:10px 0 4px;font-weight:800}
+ .sub{font-size:18px;color:#444;text-align:center;margin-bottom:14px}
+ .info{font-size:20px;line-height:1.6;margin-top:10px}
+ .photos{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+ .photos img{width:180px;height:180px;object-fit:cover;border-radius:8px;border:2px solid #ddd}
+ .fixed-contact{position:fixed;top:0;left:0;right:0;background:#27ae60;color:white;font-size:20px;padding:12px;text-align:center;z-index:999;font-weight:700}
+ .fixed-contact a{color:white;text-decoration:none}
+ .section-title{margin-top:20px;font-size:22px;font-weight:700;color:#2c3e50;text-align:center}
+ /* upload & live preview */
+ input[type=file]{font-size:16px;margin-top:10px}
+ .preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+ .preview img{width:100px;height:100px;object-fit:cover;border-radius:6px;border:2px solid #ccc}
+ button{padding:10px 16px;background:#2980b9;color:white;font-size:18px;border:0;border-radius:8px;margin-top:10px;cursor:pointer}
+ button:hover{opacity:.9}
+</style>
+</head>
+<body>
+<div class="fixed-contact">
+ 📞 <a id="callLink" href="tel:7007482965">7007482965</a> | 💬 <a id="waLink" href="https://wa.me/917007482965">WhatsApp संदेश भेजें</a>
+</div>
+
+<div style="height:54px"></div><!-- spacer for fixed bar -->
+
+<div class="wrapper">
+<h1>⚠ खोया हुआ कुत्ता</h1>
+<div class="sub">कृपया ढूंढने में मदद करें 🙏</div>
+
+<div class="photos" id="photoBox">
+ <img src="max1.jpg">
+ <img src="max2.jpg">
+ <img src="max3.jpg">
+</div>
+
+<div class="info">
+<strong>नाम:</strong> मैक्स<br>
+<strong>नस्ल:</strong> इंडियन नेटिव डॉग<br>
+<strong>रंग:</strong> काला और भूरा<br>
+<strong>आकार:</strong> मध्यम आकार<br>
+<strong>लिंग:</strong> नर<br>
+<strong>विशेष पहचान:</strong> दायां कान थोड़ा झुका हुआ<br>
+<strong>गुम होने की तारीख:</strong> 28 अक्टूबर 2025<br>
+<strong>स्थान:</strong> खोरिया उर्फ भीटी, बघा गाड़ा, गोरखपुर 273401
+</div>
+
+<div class="section-title">कृपया देखकर बताएं 🙏</div>
+<p style="font-size:18px;text-align:center;color:#555">यह कुत्ता बहुत प्यारा और दोस्ताना है। यदि दिखाई दे तो तुरंत संपर्क करें।</p>
+
+<hr style="margin-top:24px">
+<h2 style="text-align:center;font-size:24px;color:#c0392b">📸 फोटो अपलोड करें (आपके लिए — प्रिंट/शेयर के लिए)</h2>
+<input type="file" id="upload" accept="image/*" multiple />
+<div class="preview" id="preview"></div>
+<button id="savePdf">पोस्टर सेव/प्रिंट करें</button>
+</div>
+
+<script>
+const upload=document.getElementById('upload');
+const preview=document.getElementById('preview');
+const photoBox=document.getElementById('photoBox');
+
+upload.addEventListener('change',()=>{
+ preview.innerHTML=""; photoBox.innerHTML="";
+ [...upload.files].slice(0,6).forEach(f=>{
+   const url=URL.createObjectURL(f);
+   const img=document.createElement('img'); img.src=url; preview.appendChild(img.cloneNode());
+   const big=document.createElement('img'); big.src=url; photoBox.appendChild(big);
+ });
+});
+
+document.getElementById('savePdf').onclick=()=>window.print();
+</script>
+</body>
+</html>
